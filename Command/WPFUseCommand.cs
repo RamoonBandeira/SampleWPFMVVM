@@ -16,6 +16,8 @@ namespace SampleWPFMVVM.Command
     /// <summary>
     /// Solution Developed By Ramoon Nóbrega Bandeira, portraing the use of Windows Presentation Foundation (WPF) views and the
     /// Model-View-ViewModel (MVVM) Architecture for Autodesk Revit 2019 Plugin Development.
+    /// 
+    /// Using the PropertyChanged.Fody package
     /// </summary>
     [Transaction(TransactionMode.Manual)]
     public class WPFUseCommand : IExternalCommand
