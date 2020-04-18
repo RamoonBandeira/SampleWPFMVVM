@@ -1,0 +1,108 @@
+﻿<Window x:Class="SampleWPFMVVM.Views.SampleView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SampleWPFMVVM.Views"
+        mc:Ignorable="d"
+        Title="SampleWindow"
+        Height="450"
+        Background='AliceBlue'
+        Width="300">
+  <Grid>
+    <!--Created two rows in this grid, the first with the star * 
+    and the second one setted to Auto, this means that the second
+    row will take as much space as it neeed and the first row 
+    will take the difference between the total height of the grid
+    and the height needed for the second row-->
+    <Grid.RowDefinitions>
+      <RowDefinition Height='*' />
+      <RowDefinition Height='Auto' />
+    </Grid.RowDefinitions>
+    <!--Created this stackpanel to automatically stack all the controllers in
+    the view. Note: If you don't define, the default value for Grid.Row 
+    and Grid.Column is 0-->
+    <StackPanel >
+      <Label Content='SPECIFY THE DESIRED VIEW TYPE'
+             FontFamily='Arial'
+             FontSize='14'
+             FontWeight='Bold' />
+      <!--This combobox will hold a list of view Types, the ItemSource Property
+      is the property wich will hold the list of items of the combobox, the selectedItem
+      is self explanatory, it will simply hold the selected item of the combobox list-->
+      <ComboBox Margin='5,0,5,0'
+                ItemsSource='{Binding ViewTypes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}'
+                SelectedItem='{Binding SViewType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}'
+                FontSize='14'
+                FontFamily='Arial' />
+      <Label Content='SPECIFY THE VIEW(S)'
+             FontFamily='Arial'
+             FontSize='14'
+             FontWeight='Bold' />
+      <!--Wrapped the following Combobox in a grid in order to be able to display the scroll bar of the list, 
+      if it was nested within a stackpanel, this option would not be visible-->
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height='150' />
+        </Grid.RowDefinitions>
+        <!--This is a customized listbox that will display a list of checkboxes. The Itemsource works exactly the
+        same as the one of combo boxes. -->
+        <ListBox Margin='5,0'
+                 HorizontalAlignment='Stretch'
+                 ScrollViewer.VerticalScrollBarVisibility='Auto'
+                 SelectionMode='Extended'
+                 ItemsSource='{Binding ObjectsToView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}'>
+            <ListBox.ItemTemplate>
+              <HierarchicalDataTemplate>
+                <!--The Content property of the checkbox and the IsChecked property matches these same properties of the
+                ListBoxHelper class-->
+                <CheckBox Content='{Binding Name}'
+                          IsChecked='{Binding IsSelected}'
+                          FontFamily='Arial'
+                          FontSize='14'
+                          HorizontalAlignment='Left' />
+              </HierarchicalDataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+      </Grid>
+      <!--This is a checkbox that when marked, will set all of the checkboxes values to true, and when unselected
+      will mark all the checkboxes to false-->
+      <CheckBox Margin='5,10,0,5'
+                Content='Select All Views'
+                FontFamily='Arial'
+                FontSize='14'
+                FontWeight='Bold'
+                IsChecked='{Binding SelectAllViews, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}'/>
+      <Label Content='NUMBER OF SELECTED VIEWS'
+             Margin='5,0,5,0'
+             FontFamily='Arial'
+             FontSize='14'
+             FontWeight='Bold' />
+      <!--This is a Textbox that will hold a counter to the total number of selected items within the listbox-->
+      <TextBox Margin='5'
+               IsReadOnly='True'
+               IsEnabled='False'
+               Text='{Binding NumSelectedViews, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}' />
+    </StackPanel>
+    <DockPanel Grid.Row='1'
+               LastChildFill='False'
+               Margin='5'>
+      <!--This button will execute the window and will return a report of the selected items-->
+      <Button DockPanel.Dock='Left'
+              Height='23'
+              Width='50'
+              Content='OK'
+              IsDefault='True'
+              ToolTip='Hit me To Run The Command'
+              Command='{Binding OKCommand}' />
+      <!--This button will simply cancel the window-->
+      <Button DockPanel.Dock='Right'
+              Height='23'
+              Width='50'
+              Content='CANCEL'
+              IsDefault='True'
+              ToolTip='Hit me To Cancel The Command'
+              Command='{Binding CancelCommand}' />
+    </DockPanel>
+  </Grid>
+</Window>

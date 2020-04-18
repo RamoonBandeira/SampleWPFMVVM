@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Name>MVVMSampleApp</Name>
+    <Assembly>SampleWPFMVVM.dll</Assembly>
+    <AddInId> 831AA21B-3CAD-4A56-99A8-5E13ECB645E0</AddInId>
+    <FullClassName>SampleWPFMVVM.Command.WPFUseCommand</FullClassName>
+    <Text>WPFUseCommand</Text>
+    <Description>Demo of MVVM in use inside of Autodesk Revit</Description>
+    <VendorId>Ramoon_Bandeira</VendorId>
+    <VendorDescription>Ramoon Bandeira, https://thebimteam.org </VendorDescription>
+    <VisibilityMode>NotVisibleWhenNoActiveDocument</VisibilityMode>
+  </AddIn>
+</RevitAddIns>
