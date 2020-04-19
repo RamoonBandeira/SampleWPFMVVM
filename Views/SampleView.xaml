@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:SampleWPFMVVM.Views"
         mc:Ignorable="d"
         Title="SampleWindow"
-        Height="450"
+        Icon='/SampleWPFMVVM;component/QuintechLogo32.png'
+        Height="550"
         Background='AliceBlue'
         Width="300">
   <Grid>
@@ -83,6 +84,9 @@
                IsReadOnly='True'
                IsEnabled='False'
                Text='{Binding NumSelectedViews, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}' />
+      <Image Source='/SampleWPFMVVM;component/QuintechLogo128.png'
+             Height='128'
+             Opacity='0.4'/>
     </StackPanel>
     <DockPanel Grid.Row='1'
                LastChildFill='False'
